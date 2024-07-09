@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://resultEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="resultDc"
+                  class="com.company.unicef.entity.Result">
+            <fetchPlan extends="_base"/>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="resultDc">
+            <column width="50%">
+                <textArea rows="3" id="successIndicatorField" property="successIndicator"/>
+                <comboBox id="gradeFourthTermField" property="gradeFourthTerm"/>
+                <comboBox id="gradeThirdTermField" property="gradeThirdTerm"/>
+                <comboBox id="gradeFirstTermField" property="gradeFirstTerm"/>
+                <comboBox id="gradeSecondTermField" property="gradeSecondTerm"/>
+                <label stylename="h3" value="Шкала оценки:" css="margin-top:5%;"/>
+                <label value="4 - мероприятие выполнено с прогрессом сверх нормы"/>
+                <label value="3 - мероприятие выполнено, есть значительный сдвиг в сторону успешности"/>
+                <label value="2 - мероприятие выполнено, но нет положительного результата, т. е. проблема на том же месте"/>
+                <label value="1- мероприятие выполнено, но ситуация ухудшилась"/>
+                <label value="0 - мероприятие не выполнено"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose" caption="msg://com.company.unicef.screen.event/com.company.unicef.closeButton"/>
+        </hbox>
+    </layout>
+</window>

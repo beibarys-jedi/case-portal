@@ -1,0 +1,22 @@
+@import "main-defaults";
+@import "addons";
+@import "main";
+
+.main {
+
+  @include addons;
+  @include main;
+  --primary-color: olivedrab;
+  --secondary-color: #543a04;
+  --warning-color: #ffda79;
+  --error-color: #ff647c;
+  --success-color: #36ab80;
+  --border-color: olivedrab;
+  --primary-color-shade-1: #375600;
+  --primary-color-shade-2: #375600;
+  --menubar-background-color: olivedrab;
+
+  //.jmix-fglayout > *:nth-child(even) {
+  //  background: darkgray;
+  //}
+}

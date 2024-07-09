@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://studentEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="studentDc"
+                  class="com.company.unicef.entity.Student">
+            <fetchPlan extends="_base">
+                <property name="parents" fetchPlan="_base"/>
+                <property name="address" fetchPlan="_base"/>
+                <property name="relative" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="parentsDc" property="parents"/>
+            <collection id="relativeDc" property="relative"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="studentDc">
+                <column width="350px">
+                    <textField id="studentIdField" property="studentId" editable="false"/>
+                    <textField id="fioField" property="fio"/>
+                    <comboBox id="genderField" property="gender"/>
+                    <comboBox id="maskField" property="mask"/>
+                    <textField id="studyingYearField" property="studyingYear"/>
+                    <textField id="schoolField" property="school"/>
+                    <textField id="schoolLiterField" property="schoolLiter"/>
+                    <comboBox id="studyLangField" property="studyLang"/>
+                    <comboBox id="statusField" property="status"/>
+                    <dateField id="birthDateField" property="birthDate"/>
+                    <textField id="fullAgeField" property="fullAge"/>
+                    <comboBox id="specialNeedsField" property="specialNeeds"/>
+                    <maskedField mask="+#(###) ####-###" id="contactPhoneField" property="contactPhone" valueMode="masked"/>
+                    <entityPicker id="addressField" property="address"/>
+                </column>
+            </form>
+            <groupBox id="parentsBox" caption="msg://com.company.unicef.entity/Student.parents">
+                <table id="parentsTable" dataContainer="parentsDc" width="100%" height="100%">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="fio"/>
+                        <column id="fullAge"/>
+                        <column id="familyStatus"/>
+                        <column id="isStepParent"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="parentsTable.create" caption="msg://com.company.unicef.screen.event/com.company.unicef.createButton"/>
+                        <button action="parentsTable.edit" caption="msg://com.company.unicef.screen.event/com.company.unicef.editButton"/>
+                        <button action="parentsTable.remove" caption="msg://com.company.unicef.screen.event/com.company.unicef.excludeButton"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="relativeBox" caption="msg://com.company.unicef.entity/Student.relative">
+                <table id="relativeTable" dataContainer="relativeDc" width="100%" height="100%">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="fio"/>
+                        <column id="age"/>
+                        <column id="relationDegree"/>
+                        <column id="workPlace"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="relativeTable.create" caption="msg://com.company.unicef.screen.event/com.company.unicef.createButton"/>
+                        <button action="relativeTable.edit" caption="msg://com.company.unicef.screen.event/com.company.unicef.editButton"/>
+                        <button action="relativeTable.remove" caption="msg://com.company.unicef.screen.event/com.company.unicef.excludeButton"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose" caption="msg://com.company.unicef.screen.event/com.company.unicef.closeButton"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,193 @@
+@import "../helium/helium";
+
+@mixin main {
+  @include helium;
+  @include responsive-table;
+
+  &.visually-impaired {
+    @include helium-visually-impaired;
+  }
+}
+
+@mixin helium-visually-impaired {
+  img, .v-button, .v-selected, .v-slot {
+    filter: grayscale(#{100%});
+  }
+
+  --border-color: #000000;
+  --error-color: #000000;
+  --primary-color: #000000;
+  --primary-color_rgb: 0, 0, 0;
+  --secondary-color: #000000;
+  --secondary-color_rgb: 0, 0, 0;
+  --success-color: #000000;
+  --text-main-color: #000000;
+  --warning-color: #000000;
+
+  font-weight: bold;
+}
+
+.header-border {
+  .main .jmix-app-menubar {
+    background: white;
+    border: 1px solid white;
+  }
+}
+
+
+.slider__wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  align-items: center;
+
+  .slider-image {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .v-slot-img2.hidden,
+  .v-slot-img3.hidden,
+  .v-slot-img1.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+  }
+
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .v-slot-img2.active,
+  .v-slot-img1.active,
+  .v-slot-img3.active {
+    display: block;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+    animation: fade 0.5s 1;
+  }
+
+
+  .v-slot {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+.footer {
+  .main .jmix-app-menubar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: grey;
+    color: green;
+    text-align: left;
+  }
+}
+
+@mixin responsive-table($primary-stylename: v-table) {
+  .level-low {
+    background-color: green;
+    color: black;
+  }
+
+  .background-green {
+    background-color: olivedrab;
+
+  }
+  .btn-green {
+    transition: 0.2s ease-in;
+  }
+  .btn-green:hover {
+    background-color: #567d04;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #567d04;
+  }
+
+  .border-green {
+    border: 1px solid olivedrab;
+    outline: none;
+  }
+
+  .level-medium {
+    background-color: yellow;
+    color: black;
+  }
+
+  .level-high {
+    background-color: red;
+    color: black;
+  }
+
+  .#{$primary-stylename} {
+    .#{$primary-stylename}-row,
+    .#{$primary-stylename}-row-odd {
+      &.level-high {
+        background-color: red;
+        color: black;
+
+        .jmix-grouptable-group-cell-expander:before {
+          color: white;
+        }
+      }
+    }
+
+    .#{$primary-stylename}-row,
+    .#{$primary-stylename}-row-odd {
+      &.level-low {
+        background-color: green;
+        color: black;
+
+        .jmix-grouptable-group-cell-expander:before {
+          color: white;
+        }
+      }
+    }
+
+    .#{$primary-stylename}-row,
+    .#{$primary-stylename}-row-odd {
+      &.level-medium {
+        background-color: yellow;
+        color: black;
+
+        .jmix-grouptable-group-cell-expander:before {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.checkbox-container .inline .v-caption {
+  border: 0.4rem solid white;
+  border-radius: 3px;
+  margin-right: 1rem;
+  padding: 0.2rem;
+  transition: all 500ms ease;
+
+  &:hover {
+    border: 0.2rem solid #567d04;
+  }
+}
+
+.v-tabsheet-tabs, .v-tabsheet-tabitemcell {
+  border-left: solid 0.05rem #567d04;
+  border-right: solid 0.05rem #567d04;
+  border-collapse: collapse;
+}
